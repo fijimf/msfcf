@@ -21,5 +21,9 @@ The three basic elements of a cashflow model are inputs, structure and outputs. 
 
 FUNCTIONAL!
 
+##Chapter 1
 
+###Dates and Times
+* We will use the Joda library to represent dates and times.
+* We will describe a DayCounter interfa
 
