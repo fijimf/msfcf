@@ -30,5 +30,13 @@ FUNCTIONAL!
 Chapter 1 is straight forward, but a couple of things pop up which are not immediately addressed.
 * Its not clear the methodology for writing our own Day Counters.  We will stub out an actual/actual counter, and presumably when the time comes we can use Wikipedia to help us out there.
 * Its is also not clear the methodology EDATE uses for incrementing dates.  Certainly a cashflow date has to be a business date, and some of those dates are weekends or holidays.  A date adjustment strategy needs to be put in place for when a cashflowdate lands ona holiday or weekend.  Additionally we need a method of tracking holidays.
-* Finally, while we're not actually up to actual cashflows, we do create rows of period number and date.  How many?  We don't have a deal, and he makes no mention of how we arrive at the number of 'cashflow' rows.  This final issue, however gives us an opportunity to take advantage of a great functional programming construct: streams.    
+* Finally, while we're not actually up to actual cashflows, we do create rows of period number and date.  How many?  We don't have a deal, and he makes no mention of how we arrive at the number of 'cashflow' rows.  This final issue, however gives us an opportunity to take advantage of a great functional programming construct: streams.  Wioth streams the cashflow list is described recursively -- just a as it os in Excel.
+
+
+There is some stuff about validation that we sould take seriously, but right now, we're skipping by.  On to Cahpter 2
+
+##Chapter 2
+
+###Loans vs. Replines
+
 
