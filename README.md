@@ -68,4 +68,23 @@ There is some stuff about validation that we sould take seriously, but right now
 ##Chapter 2
 
 ###Loans vs. Replines
+Loans versu replines is an interesting question in its own right, but one which like the author we will put off for a later date.  We will assume for now that if we have generated replines, they will contain roughly the same informationas loans themselves, at least insofar as calculation of monthly payments.  
+
+###ARM vs Fixed
+We are going to talke the simplification of the author and for simplicity's sake assume that we are only dealing with residential mortgages.  The big distinction there is between fixed rate and adjustable rate.
+
+####Fixed rate
+for fixed rate mortgages, the interest rate and term explicitly determine the level payment to maturity.  The author uses the Microsoft Excel function for that, but we have to code it up. I don't have the level pay formula in my head and don't feel like deriving it -- Google is our frined here:
+A = P\frac{i(1 + i)^n}{(1 + i)^n - 1} = \frac{P \times i}{1 - (1 + i)^{-n}} = P\left(i + \frac{i} {(1 + i)^n - 1}\right)
+Where:
+
+A = periodic payment amount
+P = amount of principal, net of initial payments, meaning "subtract any down-payments"
+i = periodic interest rate
+n = total number of payments
+
+
+####Adjustable Rate
+ARMs have 
+
 
