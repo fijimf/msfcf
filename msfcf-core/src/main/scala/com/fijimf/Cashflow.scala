@@ -1,7 +1,5 @@
 package com.fijimf
 
-import org.joda.time.LocalDate
-
-case class Cashflow(period:Int, date:LocalDate, dayFactor:Double) {
+case class Cashflow(accrualPeriod: AccrualPeriod, principal:Double, interest:Double, prepayments:Double) {
 
 }

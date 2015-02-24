@@ -4,18 +4,18 @@ import org.joda.time.LocalDate
 
 /* This is a potentially ill-named class, but I am on page one of the book, so for the time being we will keep it. */
 case class InputSheet(closingDate: LocalDate, firstPaymentDate: LocalDate, dayCount: DayCounter, frequency: Int) {
-  def zeroethCashflow: Cashflow = Cashflow(0, closingDate, 0);
+  def zeroethCashflow: AccrualPeriod = AccrualPeriod(0, closingDate, closingDate, 0);
 
-  def nextCashflow(c: Cashflow): Cashflow = {
+  def nextCashflow(c: AccrualPeriod): AccrualPeriod = {
     c.period match {
-      case 0 => Cashflow(1, firstPaymentDate, dayCount.yearFraction(firstPaymentDate, closingDate))
+      case 0 => AccrualPeriod(1, closingDate, firstPaymentDate, dayCount.yearFraction(firstPaymentDate, closingDate))
       case n =>
-        val date: LocalDate = c.date.plusMonths(12 / frequency)
-        Cashflow(n + 1, date, dayCount.yearFraction(date, c.date))
+        val date: LocalDate = c.endDate.plusMonths(12 / frequency)
+        AccrualPeriod(n + 1, c.endDate, date, dayCount.yearFraction(date, c.endDate))
     }
   }
 
-  def cashflows():Stream[Cashflow] = {
+  def cashflows():Stream[AccrualPeriod] = {
     Stream.iterate(zeroethCashflow)(nextCashflow)
   }
 }

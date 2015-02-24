@@ -4,8 +4,9 @@ import org.joda.time.LocalDate
 
 object Main {
   def main(args: Array[String]) {
-    val deal: InputSheet = InputSheet(new LocalDate(2015,2,5),new LocalDate(2015,3,1), Actual365, 12)
 
-    deal.cashflows().take(36).foreach(println _)
+    val frm: FixedRateMortgage = FixedRateMortgage(500000, 360, 500000,360, 0.045)
+
+    frm.amortize(new LocalDate(2015,2,5),new LocalDate(2015,3,1)).take(365).foreach(println _)
   }
 }
