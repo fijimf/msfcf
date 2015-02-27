@@ -85,6 +85,10 @@ n = total number of payments
 
 
 ####Adjustable Rate
-ARMs have 
+So ARMs are alittle tricky, but not beyond us.  The pricipals are the same.  So I will make a general pass at modelling their amortization, and then move on.  The book does not go into great detail about their cashflows, and in some cases I think might get it wrong.  The real issue is modelling the characteristics correctly.
+
+To that end some notes:
+*  Typically cshflow sheets list beginning balance, ending balance etc. along with the payment.  I have opted not to do that however, the amortization explictily is a stream of the asset and the cashflow, so I have a represnatiation of the asset at a given point in time always.
+*  To generate cashflows, I will need to pass in a sort of context which can provide the necessary information.  The context neccessary will of course be determined by the asset class.  This will require some thought to get right.
 
 
