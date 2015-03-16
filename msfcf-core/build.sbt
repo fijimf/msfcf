@@ -1,6 +1,10 @@
+organization := """com.fijimf"""
+
+//publishTo := Some(Resolver.defaultLocal)
+
 name := """msfcf-core"""
 
-version := "1.0"
+version := "1.0-SNAPSHOT"
 
 scalaVersion := "2.11.5"
 
