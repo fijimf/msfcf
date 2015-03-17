@@ -1,4 +1,4 @@
-@()<!DOCTYPE html>
+@() <!DOCTYPE html>
 <html>
     <head>
         <title data-ng-bind="pageTitle"></title>
@@ -9,45 +9,57 @@
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
     </head>
     <body>
+        <script>
+        var app = angular.module('msfcf', []);
+        app.controller('fixedRateMortgage', function($scope) {
+        });
+        </script>
         @*-- Header -- *@
-        <header class="navbar navbar-inverse navbar-fixed-top basics-nav" >
+        <header class="navbar navbar-inverse" >
             <div class="container" >
                 <a href="#/" class="navbar-brand">Modelling Structured Product Cashflows</a>
-                <div data-ng-switch-when="true">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                                <span class="glyphicon glyphicon-user"></span> {{user.name}}
-                                <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#/settings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
-                                <li>
-                                    <a href="" data-ng-click="logout()">
-                                        <span class="glyphicon glyphicon-off"></span> Logout
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div data-ng-switch-when="false">
-                    <ul class="nav navbar-nav pull-right">
-                        <li><a href="#/login">Login</a></li>
-                    </ul>
-                </div>
             </div>
         </header>
         @* -- Main Content -- *@
-        <div class="container" style="margin-top:200px;">
+        <div class="container" ng-app="msfcf" ng-controller="fixedRateMortgage">
             <div class="row">
-        <div ng-app="">
-            <p>Name: <input type="text" ng-model="name"></p>
-            <p ng-bind="name"></p>
-        </div>        @*-- Footer -- *@
+                <h3>Fixed Rate Amortizing Mortgage</h3>
+                <form class="form-horizontal">
+                <div ng-app="">
+                    <div class="form-group">
+                        <label for="origBalance" class="col-sm-2 control-label">Original Balance:</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control"  ng-model="origBalance" id="origBalance">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="origTerm" class="col-sm-2 control-label">Original Term (months):</label>
+                        <div class="col-sm-1">
+                            <input type="text" class="form-control" ng-model="origTerm" id="origTerm">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="rate" class="col-sm-2 control-label">Rate:</label>
+                        <div class="col-sm-1">
+                            <input type="text" class="form-control"  ng-model="rate" id="rate">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="origDate" class="col-sm-2 control-label">Origination Date:</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control"  ng-model="origDate" id="origDate" placeholder="mm-dd-yyyy">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="firstPayDate" class="col-sm-2 control-label">First Pay Date:</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control"  ng-model="firstPayDate" id="firstPayDate" placeholder="mm-dd-yyyy" >
+                        </div>
+                    </div>
+                 </div>
+                </form>
+                    <p ng-bind="origBalance"></p>
             </div>
         </div>
-        <footer data-ng-controller="FooterCtrl">
-        </footer>
     </body>
 </html>
