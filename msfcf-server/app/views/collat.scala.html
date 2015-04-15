@@ -9,23 +9,39 @@
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
     </head>
     <body>
-        <script>
-        var app = angular.module('msfcf', []);
-        app.controller('fixedRateMortgage', function($scope) {
-        });
-        </script>
         @*-- Header -- *@
         <header class="navbar navbar-inverse" >
             <div class="container" >
-                <a href="#/" class="navbar-brand">Modelling Structured Product Cashflows</a>
+                <a href="#" class="navbar-brand">Modelling Structured Product Cashflows</a>
             </div>
         </header>
         @* -- Main Content -- *@
+        <script>
+
+        angular.module ( 'msfcf', [ ] ).controller ( 'fixedRateMortgage', [ '$scope', '$http', function ( $scope, $http ) {
+            $scope.amortize = function ( ) {
+                var data =  {
+                "originalBalance" : parseFloat($scope.origBalance),
+                "originalTerm" :parseInt($scope.origTerm),
+                "rate" :parseFloat($scope.rate),
+                "origDate" :$scope.origDate,
+                "firstPayDate" :$scope.firstPayDate
+                } ;
+                var httpPromise = $http.post ( "/frm-amortize", JSON.stringify(data) ) ;
+                httpPromise.success ( function ( data, status, headers, config ) {
+                    alert ( "AJAX worked!"+data ) ;
+                } ) ;
+                httpPromise.error ( function ( data, status, headers, config ) {
+                    alert ( "AJAX failed!" ) ;
+                } ) ;
+            } ;
+        } ] ) ;
+        </script>
         <div class="container" ng-app="msfcf" ng-controller="fixedRateMortgage">
             <div class="row">
                 <h3>Fixed Rate Amortizing Mortgage</h3>
                 <form class="form-horizontal">
-                <div ng-app="">
+                <div >
                     <div class="form-group">
                         <label for="origBalance" class="col-sm-2 control-label">Original Balance:</label>
                         <div class="col-sm-2">
@@ -53,10 +69,12 @@
                     <div class="form-group">
                         <label for="firstPayDate" class="col-sm-2 control-label">First Pay Date:</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control"  ng-model="firstPayDate" id="firstPayDate" placeholder="mm-dd-yyyy" >
+                            <input type="text" class="form-control" ng-model="firstPayDate" id="firstPayDate" placeholder="mm-dd-yyyy" >
                         </div>
                     </div>
+                    <button class="btn btn-primary col-sm-offset-1 col-sm-2" ng-click="amortize();">Amortize</button>
                  </div>
+
                 </form>
                     <p ng-bind="origBalance"></p>
             </div>
